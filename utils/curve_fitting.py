@@ -12,6 +12,10 @@ def diminishing(x, a, b, c):
     return a + (x**b) / c
 
 @njit(nogil=True, parallel=True, cache=True)
+def diminishing_2(x, a, b):         #take log of both side to convert to linear function
+    return np.exp(a)*(x**b)
+
+@njit(nogil=True, parallel=True, cache=True)
 def logarithm(x, a, b, c, d):
     return a + b*np.log(x*c) / np.log(d)
 
@@ -26,7 +30,6 @@ def sigmoid(x, A, k, x0, offset):
 @njit(nogil=True, parallel=True, cache=True)
 def polynomial(x, a, b, c):
     return a*x**2 + b*x + c
-
 
 def bootstrap_by_index(X):
     return np.random.choice(np.arange(len(X)),
