@@ -8,6 +8,10 @@ def linear(x, a, b):
     return a + x*b
 
 @njit(nogil=True, parallel=True, cache=True)
+def linear_2(x, a, b):
+    return (np.exp(a)*x**b)
+
+@njit(nogil=True, parallel=True, cache=True)
 def diminishing(x, a, b, c):
     return a + (x**b) / c
 
